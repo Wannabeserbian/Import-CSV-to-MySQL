@@ -15,10 +15,11 @@ dataframe = pd.read_csv(latest_file, header = None, names = column_names)
 dataframe.drop([0], inplace = True)
 print(dataframe)
 
-
+# Change USERNAME,PASSWORD and DB_NAME with your username , password and DB_NAME
 engine = create_engine('mysql://USERNAME:PASSWORD@localhost/DB_NAME')
 with engine.connect() as conn, conn.begin():
     print('Connection with engine is opened')
+    # Change TABLE_NAME with a name of your choice
     dataframe.to_sql('TABLE_NAME', conn, if_exists='replace', index=True)
     print('Table successfully created')
 
